@@ -46,15 +46,26 @@ const signUp = async (req, res) => {
   });
 
   try {
-    if (roles) {
-      const foundRole = await Role.find({ name: { $in: roles } });
-      newUser.roles = foundRole.map((role) => role._id);
+    if (roles && roles.length > 0) {
+      if (roles.includes('user') && roles.length === 1) {
+        // Si se envía solo el rol 'user', asignarlo
+        const userRole = await Role.findOne({ name: 'user' });
+        newUser.roles = [userRole._id];
+      } else {
+        // Si se envían otros roles además de 'user', mostrar un mensaje de error
+        res.status(400).json({ error: "Solo se permite crear el rol 'user'" });
+        return; // Detener la ejecución aquí
+      }
     } else {
+      // Si no se proporcionan roles, asignar 'user' por defecto
       const role = await Role.findOne({ name: "user" });
       newUser.roles = [role._id];
     }
+    
+    console.log(newUser);
+
     const savedUser = await newUser.save();
-    console.log(savedUser);
+    // console.log(savedUser);
     //JSONWEBTOKEN
     const token = jwt.sign({ id: savedUser._id }, process.env.TOKEN_SECRET, {
       expiresIn: 86400, //24 horas
@@ -94,10 +105,10 @@ const signIn = async (req, res) => {
       .status(401)
       .json({ token: null, message: "Credenciales incorrectas" });
   }
-  const token = jwt.sign({id:user._id}, process.env.TOKEN_SECRET, {
-    expiresIn:86400
-   })
-  return res.json({ token});
+  const token = jwt.sign({ id: user._id }, process.env.TOKEN_SECRET, {
+    expiresIn: 86400,
+  });
+  return res.json({ token });
 };
 
 module.exports = { signUp, signIn };

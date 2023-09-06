@@ -3,7 +3,7 @@ const Roles = ["user", "admin", "moderator"];
 
 const User = require("../models/User");
 
-const checkDuplicateUsernameOrEmail = async (req,res,next)=>{
+const checkExistedEmailOrUsername = async (req,res,next)=>{
     const user = await User.findOne({username:req.body.username})
     if(user)return res.status(400).json({message:'The user already exists'})
 
@@ -27,4 +27,4 @@ const checkRolesExisted = async (req, res, next) => {
   next();
 };
 
-module.exports = { checkRolesExisted, checkDuplicateUsernameOrEmail };
+module.exports = { checkRolesExisted, checkExistedEmailOrUsername };

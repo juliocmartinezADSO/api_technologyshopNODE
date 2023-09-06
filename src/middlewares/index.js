@@ -1,4 +1,4 @@
 const {verifyToken, isModerator, isAdmin} = require('./authJwt')
-const {checkRolesExisted, checkDuplicateUsernameOrEmail} = require('./verifySigup')
+const {checkRolesExisted, checkExistedEmailOrUsername} = require('./verifySigup')
 
-module.exports = {verifyToken, isModerator, isAdmin, checkRolesExisted, checkDuplicateUsernameOrEmail}
+module.exports = {verifyToken, isModerator, isAdmin, checkRolesExisted, checkExistedEmailOrUsername}
