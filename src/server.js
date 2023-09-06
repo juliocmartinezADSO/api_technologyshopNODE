@@ -26,19 +26,17 @@ app.get("/", (req, res) => {
 });
 //Import route
 const authRoute = require("./routes/auth.routes");
-const verifyToken = require("./routes/validate-token");
-const admin = require("./routes/admin");
 const productsRoutes = require("./routes/productsRoutes");
-const ordersRoutes = require("./routes/orderController");
+const ordersRoutes = require("./routes/order.routes");
 const usersRoutes= require("./routes/user.routes")
 //Register
 
 /* El código `app.use("/api/user", authRoute)` y `app.use("/api/admin", verificarToken, admin)` están
 configurando rutas para la aplicación. */
-app.use(productsRoutes);
-app.use('/api/auth', authRoute);
-app.use('/api/users', usersRoutes)
-// app.use(ordersRoutes);
+app.use('/api/',productsRoutes);
+app.use('/api/auth/', authRoute);
+app.use('/api/users/', usersRoutes)
+app.use('/api/',ordersRoutes);
 // app.use("/api/admin", verifyToken, admin);
 
 //Conexion a la base de datos

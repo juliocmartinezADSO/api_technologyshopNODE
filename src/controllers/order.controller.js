@@ -3,7 +3,7 @@ const Customer = require("../models/User"); // Modelo de cliente
 const Product = require("../models/Products"); // Modelo de producto
 
 // Controlador para crear una nueva orden
-async function createOrder(req, res) {
+const createOrder = async (req, res) => {
   const { customerId, productId, quantity } = req.body;
 
   try {
@@ -47,6 +47,16 @@ async function createOrder(req, res) {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-}
+};
 
-module.exports = createOrder;
+const getOrders = async (req, res) => {
+  try {
+    // const orders = await Order.find().select('_id name');
+    const orders = await Order.find().populate('customer', 'name email')
+    res.status(200).json(orders);
+  } catch (error) {
+    res.status(400).json({ message: error });
+  }
+};
+
+module.exports =  {createOrder, getOrders}

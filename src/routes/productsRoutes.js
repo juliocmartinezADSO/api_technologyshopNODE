@@ -10,18 +10,18 @@ const {
 
 const {verifyToken, isModerator, isAdmin} = require('../middlewares/')
 // Crear un nuevo producto
-router.post("/api/products", [verifyToken, isModerator], createProduct);
+router.post("/products", [verifyToken, isModerator], createProduct);
 
 // Obtener lista de productos
-router.get("/api/products", getProducts);
+router.get("/products", getProducts);
 
 // Obtener detalles de un producto
-router.get("/api/products/:id", getProductById);
+router.get("/products/:id", getProductById);
 
 // Actualizar un producto por ID
-router.put("/api/products/:id", [verifyToken, isAdmin], updateProductById);
+router.put("/products/:id", [verifyToken, isAdmin], updateProductById);
 
 // Eliminar un producto por ID
-router.delete("/api/products/:id", [verifyToken, isModerator], deleteProductById);
+router.delete("/products/:id", [verifyToken, isModerator], deleteProductById);
 
 module.exports = router;
