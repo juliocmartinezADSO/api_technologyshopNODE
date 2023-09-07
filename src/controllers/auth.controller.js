@@ -68,7 +68,7 @@ const signUp = async (req, res) => {
     // console.log(savedUser);
     //JSONWEBTOKEN
     const token = jwt.sign({ id: savedUser._id }, process.env.TOKEN_SECRET, {
-      expiresIn: 86400, //24 horas
+      expiresIn: 3600, //1 horas
     });
 
     res.status(200).json({ token });
@@ -106,7 +106,7 @@ const signIn = async (req, res) => {
       .json({ token: null, message: "Credenciales incorrectas" });
   }
   const token = jwt.sign({ id: user._id }, process.env.TOKEN_SECRET, {
-    expiresIn: 86400,
+    expiresIn: 3600, //1 hora
   });
   return res.json({ token });
 };

@@ -8,7 +8,7 @@ const orderSchema = new Schema({
     },
     products:[
         {
-            product:{
+            productId:{
                 type:Schema.Types.ObjectId,
                 ref:'Products',
                 required:true

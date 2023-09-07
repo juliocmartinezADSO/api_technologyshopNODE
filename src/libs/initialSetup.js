@@ -22,7 +22,6 @@ const createAdmin = async () => {
   try {
     // check for an existing admin user
     const userFound = await User.findOne({ email: process.env.ADMIN_EMAIL });
-    console.log(userFound);
     if (userFound) return;
 
     // get roles _id
@@ -39,7 +38,8 @@ const createAdmin = async () => {
 
     console.log(`new user created: ${newUser.email}`);
   } catch (error) {
-    console.log('Ya existe un administrador');
+    console.log(`${error.keyValue.username} creado`);
+    // console.log('Ya existe un admin');
   }
 };
 

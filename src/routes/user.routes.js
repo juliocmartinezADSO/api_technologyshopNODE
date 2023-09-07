@@ -5,7 +5,7 @@ const { createUser } = require("../controllers/user.controller");
 const {signUp} = require("../controllers/auth.controller")
 const { verifyToken, isAdmin, checkRolesExisted, isModerator, checkExistedEmailOrUsername } = require("../middlewares");
 
-router.post("/", [verifyToken, isAdmin, checkRolesExisted, checkExistedEmailOrUsername], signUp);
+router.post("/users", [verifyToken, isAdmin, checkRolesExisted, checkExistedEmailOrUsername], signUp);
 
 
 module.exports = router;

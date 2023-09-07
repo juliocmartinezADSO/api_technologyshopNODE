@@ -1,43 +1,35 @@
-/* Estas líneas de código importan e inicializan los módulos necesarios para crear un servidor web
-usando Express.js e interactuar con una base de datos MongoDB usando Mongoose. */
 const express = require("express");
-const morgan = require('morgan')
-const {createRoles, createAdmin} = require("./libs/initialSetup");
+const morgan = require("morgan");
+const bodyparser = require("body-parser");
+const cors = require("cors");
+const { createRoles, createAdmin } = require("./libs/initialSetup");
+const dotenv = require("dotenv")
 const app = express();
+
+//Configuracion inicial de roles y administrador
 createRoles();
 createAdmin();
-const bodyparser = require("body-parser");
 
-// cors
-/* El código `const cors = require("cors")` importa el módulo `cors`, que se utiliza para habilitar el
-intercambio de recursos entre orígenes (CORS) en el servidor Express.js. */
-const cors = require("cors");
+//Configuracion de las variables de entorno
+dotenv.config()
+
+// Middleware
 app.use(cors());
-
-require("dotenv").config();
-app.use(morgan('dev'))
+app.use(morgan("dev"));
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
 
-app.get("/", (req, res) => {
-  res.json({
-    message: "Ruta exitosa",
-  });
-});
-//Import route
+//Importar rutas
 const authRoute = require("./routes/auth.routes");
 const productsRoutes = require("./routes/productsRoutes");
 const ordersRoutes = require("./routes/order.routes");
-const usersRoutes= require("./routes/user.routes")
-//Register
+const usersRoutes = require("./routes/user.routes");
 
-/* El código `app.use("/api/user", authRoute)` y `app.use("/api/admin", verificarToken, admin)` están
-configurando rutas para la aplicación. */
-app.use('/api/',productsRoutes);
-app.use('/api/auth/', authRoute);
-app.use('/api/users/', usersRoutes)
-app.use('/api/',ordersRoutes);
-// app.use("/api/admin", verifyToken, admin);
+// Configurar las rutas de la aplicación
+app.use("/api/auth/", authRoute);
+app.use("/api/", usersRoutes);
+app.use("/api/", productsRoutes);
+app.use("/api/", ordersRoutes);
 
 //Conexion a la base de datos
 require("./database");
