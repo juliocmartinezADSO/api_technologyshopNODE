@@ -1,5 +1,6 @@
 const {Schema, model} = require('mongoose');
-
+const moment = require('moment-timezone')
+moment.tz.setDefault("America/Bogota")
 const productSchema = new Schema({
   name: {
     type: String,
@@ -30,7 +31,7 @@ const productSchema = new Schema({
   },
   createdAt: {
     type: Date,
-    default: Date.now,
+    default: ()=>moment().format(),
   },
 });
 

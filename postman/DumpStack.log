@@ -1,0 +1,419 @@
+{
+	"info": {
+		"_postman_id": "6d796cbb-9224-446b-b1b8-01db527d46bd",
+		"name": "Api TechnologyShop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25109628"
+	},
+	"item": [
+		{
+			"name": "products",
+			"item": [
+				{
+					"name": "/products",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZjYyMTAyZmQ0MDM5ZjcxOWEyN2MwYSIsImlhdCI6MTY5Mzg1MTkwNiwiZXhwIjoxNjkzOTM4MzA2fQ.ysZ3n5Hl9FE9ViVLQuXNGF8BcxWBw9fU-AR_udk19c0",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Redmi note 11s\",\r\n    \"description\":\"description Redmi note 11s\",\r\n    \"price\":1000,\r\n    \"category\":\"celulares\",\r\n    \"imageUrl\":\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3R6b3GEsjptQKVkFi1DEH50ASWNdYHlJp5Q&usqp=CAU\",\r\n    \"stock\":100\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/products",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"iPhone x14\",\r\n    \"description\":\"description iPhone x14\",\r\n    \"price\":1000,\r\n    \"category\":\"celulares\",\r\n    \"imageUrl\":\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3R6b3GEsjptQKVkFi1DEH50ASWNdYHlJp5Q&usqp=CAU\",\r\n    \"stock\":100\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/products/id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"iPhone x14\",\r\n    \"description\":\"description iPhone x14\",\r\n    \"price\":1000,\r\n    \"category\":\"celulares\",\r\n    \"imageUrl\":\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3R6b3GEsjptQKVkFi1DEH50ASWNdYHlJp5Q&usqp=CAU\",\r\n    \"stock\":100\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/products/64f2181e2b575544e126fee6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"products",
+								"64f2181e2b575544e126fee6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/products/id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"iPhone x14 v2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/products/64f22e97523b99354314433f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"products",
+								"64f22e97523b99354314433f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/products/id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0Zjc2YTcxMWIxOWMzNTBjMjRiYzEwNSIsImlhdCI6MTY5MzkzNjI2NiwiZXhwIjoxNjk0MDIyNjY2fQ.WURaTpP_s7xzOKl07JKEzDp6ET6ltXbmW_5sTmjxsqM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"iPhone x14 modified\",\r\n    \"description\":\"description iPhone x14\",\r\n    \"price\":1000,\r\n    \"category\":\"celulares\",\r\n    \"imageUrl\":\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3R6b3GEsjptQKVkFi1DEH50ASWNdYHlJp5Q&usqp=CAU\",\r\n    \"stock\":100\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/products/64f6160fb36a0c2f1462504b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"products",
+								"64f6160fb36a0c2f1462504b"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "/users",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZjhhNWVhMGU0N2Q3MjRmYTIwOTc2MSIsImlhdCI6MTY5NDAxNzAwMywiZXhwIjoxNjk0MTAzNDAzfQ.k9sNzxFtMenBdPiGvvnL0j0Vzgv_l1wfm3u1D_uUKPU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"userstand\",\r\n    \"username\":\"userstand\",\r\n    \"email\":\"userstand@hotmail.com\",\r\n    \"password\":\"123123\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "signup",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response contains a token\", function () {\r",
+									"    pm.expect(pm.response.json()).to.have.property(\"token\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response does not contain errors\", function () {\r",
+									"    pm.expect(pm.response.json()).not.to.have.property(\"error\");\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZjYxYjJjZTAwZDExYTg0ODQ1YzFhNyIsImlhdCI6MTY5Mzg1MTMwNiwiZXhwIjoxNjkzOTM3NzA2fQ.DbaH6ZFa_GTAnNBFTUu6ltwrO5_KwwYJoUR9aGgiiNQ",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"userstand\",\r\n    \"username\":\"userstand\",\r\n    \"email\":\"userstand@hotmail.com\",\r\n    \"password\":\"123123\"\r\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/auth/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function(){\r",
+									"    pm.response.to.have.status(200)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a token\", function(){\r",
+									"    pm.expect(pm.response.json()).to.have.property(\"token\")\r",
+									"});\r",
+									"pm.test(\"Response does not contain errors\", function () {\r",
+									"    pm.expect(pm.response.json()).not.to.have.property(\"error\");\r",
+									"});\r",
+									"pm.test(\"Token is not empty\", function () {\r",
+									"    pm.expect(pm.response.json().token).not.to.be.empty;\r",
+									"});\r",
+									"pm.test(\"Token is a string\", function () {\r",
+									"    pm.expect(pm.response.json().token).to.be.a(\"string\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZjhhNTU5MGU0N2Q3MjRmYTIwOTczYyIsImlhdCI6MTY5NDExODQ1OCwiZXhwIjoxNjk0MTIyMDU4fQ.hbf_YCUtuVKXMS5gNIrTsN8cMFYj40us_D3rY9jktO4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"julio.martinezg8@gmail.com\",\r\n    \"password\":\"administrador\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/auth/signin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "orders",
+			"item": [
+				{
+					"name": "order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZmI2NDBlZGI2NTA3OTliNWQ1MDdkMiIsImlhdCI6MTY5NDE5NzAyNiwiZXhwIjoxNjk0MjAwNjI2fQ.ObGpLk2bIbjq27KKzrEJLwTxO99mUtvn3sg-02VjdRc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"customerId\": \"64fb65762b725defadc05865\",\r\n  \"products\":[\r\n          {\r\n          \"productId\": \"64f8f4d1bc5c2f251f75e1af\",\r\n          \"quantity\": 1\r\n          },\r\n          {\r\n          \"productId\":\"64f773dbb20fd225679fe149\",\r\n          \"quantity\":12\r\n          } \r\n  ]\r\n  }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "orders",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZjhhNTU5MGU0N2Q3MjRmYTIwOTczYyIsImlhdCI6MTY5NDE0MTMxMywiZXhwIjoxNjk0MTQ0OTEzfQ.aZ1ywJ2lMrEWvS1e0kTKs5dcwVELMBVFOKiYaZq63rE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/api/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

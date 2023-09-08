@@ -38,7 +38,7 @@ const createAdmin = async () => {
 
     console.log(`new user created: ${newUser.email}`);
   } catch (error) {
-    console.log(`${error.keyValue.username} creado`);
+    console.log(`creado`);
     // console.log('Ya existe un admin');
   }
 };

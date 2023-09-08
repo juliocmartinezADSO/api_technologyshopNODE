@@ -1,5 +1,6 @@
 const {Schema, model} = require('mongoose')
-
+const moment = require('moment-timezone')
+const timezone = moment.tz("America/Bogota")
 const orderSchema = new Schema({
     customer: {
         type: Schema.Types.ObjectId,
@@ -10,7 +11,7 @@ const orderSchema = new Schema({
         {
             productId:{
                 type:Schema.Types.ObjectId,
-                ref:'Products',
+                ref:'Product',
                 required:true
             },
             quantity:{
@@ -21,7 +22,7 @@ const orderSchema = new Schema({
     ],
     orderDate:{
         type:Date,
-        default:Date.now
+        default:timezone
     },
     status:{
         type:String,

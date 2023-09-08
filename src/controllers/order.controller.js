@@ -16,64 +16,53 @@ const createOrder = async (req, res) => {
 
     //Verificar si los productos existen y calcular el total
     for (const productItem of products) {
-      const { productId, quantity } = productItem;
+      const { productId, quantity, ...extraKeys } = productItem;
+
+      //Verificar que no hayan claves diferentes a productId y quantity
+      if (Object.keys(extraKeys).length !== 0) {
+        return res  
+          .status(400)
+          .json({ message: 'Solo se permiten las claves "productId" y "quantity" en cada producto'});
+      }
 
       //Verificar si el producto existe
       const product = await Product.findById(productId);
       if (!product) {
-        return res.status(400).json({ message: `Producto ${productId} no encontrado` });
+        return res
+          .status(400)
+          .json({ message: `Producto ${productId} no encontrado` });
       }
 
       //Verificar si la cantidad de productos está disponible en el stock
-      if(quantity > product.stock){
-        return res.status(400).json({message:`Cantidad insuficiente en el stock para ${productId}`})
+      if (quantity > product.stock) {
+        return res.status(400).json({
+          message: `Cantidad insuficiente en el stock para ${productId}`,
+        });
       }
-      total+=product.price * quantity
-      
+      total += product.price * quantity;
     }
-
-    // Verificar si el producto existe
-    // const product = await Product.findById(productId);
-    // if (!product) {
-    //   return res.status(404).json({ message: "Producto no encontrado" });
-    // }
-
-    // // Verificar si la cantidad de productos está disponible en el stock
-    // if (quantity > product.stock) {
-    //   return res
-    //     .status(400)
-    //     .json({ message: "Cantidad insuficiente en el stock" });
-    // }
 
     // Si tanto el cliente como el producto existen, proceder a crear la orden
     const order = new Order({
       customer: customerId,
       products: products,
-      total: total
+      total: total,
     });
 
     const savedOrder = await order.save();
-    
+
     // Restar la cantidad del stock del producto
-    for(const productItem of products){
+    for (const productItem of products) {
       const { productId, quantity } = productItem;
-      const product = await Product.findById(productId)
-      product.stock-=quantity
-      await product.save()
-      
-      if(product.stock <=0){
-        product.availability=false
-        await product.save()
+      const product = await Product.findById(productId);
+      product.stock -= quantity;
+      await product.save();
+
+      if (product.stock <= 0) {
+        product.availability = false;
+        await product.save();
       }
-
     }
-    // product.stock -= quantity;
-    // await product.save();
-
-    // if (product.stock <= 0) {
-    //   product.availability = false;
-    //   await product.save();
-    // }
 
     res.status(201).json(savedOrder);
   } catch (error) {
@@ -83,12 +72,34 @@ const createOrder = async (req, res) => {
 
 const getOrders = async (req, res) => {
   try {
-    // const orders = await Order.find().select('_id name');
-    const orders = await Order.find().populate("customer", "name email");
-    res.status(200).json(orders);
+    const orders = await Order.find().populate("customer", "name email").populate("products.productId", "name"); // Agregamos la población del nombre del producto
+
+    console.log(orders);
+    if (orders.length <= 0) {
+      return res.status(404).json({ message: "No existen ordenes" });
+    }
+
+    // Mapear las órdenes y agregar el nombre del producto en cada producto
+    const ordersWithProductNames = await Promise.all(orders.map(async (order) => {
+      const productsWithNames = await Promise.all(order.products.map(async (productItem) => {
+        const product = await Product.findById(productItem.productId);
+        return {
+          ...productItem.toObject(),
+          productName: product ? product.name : "Producto Desconocido",
+        };
+      }));
+
+      return {
+        ...order.toObject(),
+        products: productsWithNames,
+      };
+    }));
+
+    res.status(200).json(ordersWithProductNames);
   } catch (error) {
     res.status(400).json({ message: error });
   }
 };
+
 
 module.exports = { createOrder, getOrders };
